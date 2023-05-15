@@ -5,6 +5,8 @@
  * The main method then initializes the LinkSqueezerGUI object using the LinkShortener and LinkStorage objects, and calls the initComponents method to start the GUI.
  */
 package linksqueezer;
+import GUI.MainFrame;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +27,7 @@ public class LinkSqueezerApp {
             }
         }
 
-        LinkSqueezerGUI linkSqueezerGUI = new LinkSqueezerGUI(linkShortener, linkStorage);
-        linkSqueezerGUI.initComponents();
+        MainFrame mainFrame = new MainFrame(linkShortener, linkStorage);
+        mainFrame.setVisible(true);
     }
 }

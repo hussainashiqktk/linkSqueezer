@@ -4,17 +4,30 @@
  */
 package GUI;
 
+import linksqueezer.LinkSqueezer;
+import linksqueezer.LinkStorage;
+
 /**
  *
  * @author blackrose
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+    private LinkSqueezer linkSqueezer;
+    private LinkStorage linkStorage;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+
+
+    public MainFrame(LinkSqueezer linkShortener, LinkStorage linkStorage) {
+        this.linkSqueezer = linkSqueezer;
+        this.linkStorage = linkStorage;
         initComponents();
+    }
+
+    private MainFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
