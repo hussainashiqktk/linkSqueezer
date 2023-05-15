@@ -7,6 +7,7 @@ package GUI;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import javax.swing.JOptionPane;
 import linksqueezer.LinkSqueezer;
 import linksqueezer.LinkStorage;
 
@@ -256,7 +257,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); // Get the system clipboard
     clipboard.setContents(selection, null); // Set the contents of the clipboard to the StringSelection object
-        
+     JOptionPane.showMessageDialog(null, "Text Copied"); // Display the pop-up message
     }//GEN-LAST:event_btnCopyToClipBoardActionPerformed
 
     /**
