@@ -64,6 +64,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblLongURL.setText("Long URL");
 
         txtLongURL.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtLongURL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, java.awt.Color.lightGray, null, null));
         txtLongURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLongURLActionPerformed(evt);
@@ -74,6 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblAlias.setText("Alias/Name");
 
         txtAlias.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtAlias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, java.awt.Color.lightGray, null, null));
         txtAlias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAliasActionPerformed(evt);
@@ -91,6 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         txtSqueezedURL.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtSqueezedURL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, java.awt.Color.lightGray, null, null));
         txtSqueezedURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSqueezedURLActionPerformed(evt);
@@ -237,7 +240,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSqueezedURLActionPerformed
 
     private void btnSqueezeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSqueezeActionPerformed
-        // TODO add your handling code here:
+        LinkSqueezer ls = new LinkSqueezer();
+        txtSqueezedURL.setText(ls.generateShortUrl(txtLongURL.getText()));
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
     /**
