@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import javax.swing.JOptionPane;
 import linksqueezer.LinkSqueezer;
 import linksqueezer.LinkStorage;
 
@@ -107,6 +111,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnCopyToClipBoard.setForeground(new java.awt.Color(51, 204, 0));
         btnCopyToClipBoard.setText("Copy To Clipboard");
         btnCopyToClipBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        btnCopyToClipBoard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopyToClipBoardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,10 +160,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(btnSqueeze, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSqueezedURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSqueezedURL)
-                    .addComponent(btnCopyToClipBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCopyToClipBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSqueezedURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSqueezedURL)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -243,6 +253,16 @@ public class MainFrame extends javax.swing.JFrame {
         LinkSqueezer ls = new LinkSqueezer();
         txtSqueezedURL.setText(ls.generateShortUrl(txtLongURL.getText()));
     }//GEN-LAST:event_btnSqueezeActionPerformed
+
+    private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
+        // BTN
+     String text = txtSqueezedURL.getText(); // Get the text from txtSqueezedURL
+    StringSelection selection = new StringSelection(text); // Create a StringSelection object with the text
+
+    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); // Get the system clipboard
+    clipboard.setContents(selection, null); // Set the contents of the clipboard to the StringSelection object
+     JOptionPane.showMessageDialog(null, "Text Copied"); // Display the pop-up message
+    }//GEN-LAST:event_btnCopyToClipBoardActionPerformed
 
     /**
      * @param args the command line arguments
