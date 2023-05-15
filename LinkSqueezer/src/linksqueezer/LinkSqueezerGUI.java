@@ -1,10 +1,12 @@
 package linksqueezer;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 public class LinkSqueezerGUI extends JFrame {
 
     private JTextField longUrlTextField;
@@ -12,11 +14,12 @@ public class LinkSqueezerGUI extends JFrame {
     private JButton shortenButton;
     private JTextField shortUrlTextField;
     private JButton retrieveButton;
+    private JButton showRecordButton;
 
-    private LinkShortener linkShortener;
+    private LinkSqueezer linkShortener;
     private LinkStorage linkStorage;
 
-    public LinkSqueezerGUI(LinkShortener linkShortener, LinkStorage linkStorage) {
+    public LinkSqueezerGUI(LinkSqueezer linkShortener, LinkStorage linkStorage) {
         this.linkShortener = linkShortener;
         this.linkStorage = linkStorage;
         initComponents();
@@ -25,6 +28,7 @@ public class LinkSqueezerGUI extends JFrame {
     void initComponents() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("LinkSqueezer");
+        setSize(600, 200);
 
         longUrlTextField = new JTextField(30);
         aliasTextField = new JTextField(10);
@@ -32,6 +36,7 @@ public class LinkSqueezerGUI extends JFrame {
         shortUrlTextField = new JTextField(30);
         shortUrlTextField.setEditable(false);
         retrieveButton = new JButton("Retrieve");
+        showRecordButton = new JButton("Show Record");
 
         shortenButton.addActionListener(new ActionListener() {
             @Override
@@ -77,6 +82,29 @@ public class LinkSqueezerGUI extends JFrame {
             }
         });
 
+        showRecordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame recordFrame = new JFrame("Link Record");
+                JTable recordTable = new JTable();
+                DefaultTableModel tableModel = new DefaultTableModel(
+                        new Object[]{"Serial No.", "Long URL", "Short URL"}, 0);
+                try {
+                    int count = 1;
+                    for (Link link : linkStorage.getAllLinks()) {
+                        tableModel.addRow(new Object[]{count++, link.getLongUrl(), link.getShortUrl()});
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                recordTable.setModel(tableModel);
+                recordFrame.add(new JScrollPane(recordTable));
+                recordFrame.pack();
+                recordFrame.setLocationRelativeTo(null);
+                recordFrame.setVisible(true);
+            }
+        });
+
         JPanel inputPanel = new JPanel(new FlowLayout());
         inputPanel.add(new JLabel("Long URL:"));
         inputPanel.add(longUrlTextField);
@@ -88,12 +116,12 @@ public class LinkSqueezerGUI extends JFrame {
         outputPanel.add(new JLabel("Short URL:"));
         outputPanel.add(shortUrlTextField);
         outputPanel.add(retrieveButton);
+        outputPanel.add(showRecordButton);
 
         setLayout(new BorderLayout());
         add(inputPanel, BorderLayout.NORTH);
         add(outputPanel, BorderLayout.CENTER);
 
-        pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
