@@ -16,13 +16,13 @@ import linksqueezer.LinkStorage;
  * @author blackrose
  */
 public class MainFrame extends javax.swing.JFrame {
-    
+
     private LinkSqueezer linkSqueezer;
     private LinkStorage linkStorage;
+
     /**
      * Creates new form MainFrame
      */
-
 
     public MainFrame(LinkSqueezer linkShortener, LinkStorage linkStorage) {
         this.linkSqueezer = linkSqueezer;
@@ -256,12 +256,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
         // BTN
-     String text = txtSqueezedURL.getText(); // Get the text from txtSqueezedURL
-    StringSelection selection = new StringSelection(text); // Create a StringSelection object with the text
+        String text = txtSqueezedURL.getText(); // Get the text from txtSqueezedURL
 
-    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); // Get the system clipboard
-    clipboard.setContents(selection, null); // Set the contents of the clipboard to the StringSelection object
-     JOptionPane.showMessageDialog(null, "Text Copied"); // Display the pop-up message
+        if (text.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nothing to copy, please fill the field");
+        } else {
+            StringSelection selection = new StringSelection(text); // Create a StringSelection object with the text
+
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); // Get the system clipboard
+            clipboard.setContents(selection, null); // Set the contents of the clipboard to the StringSelection object
+
+            JOptionPane.showMessageDialog(null, "Text Copied"); // Display the pop-up message
+        }
+
     }//GEN-LAST:event_btnCopyToClipBoardActionPerformed
 
     /**
