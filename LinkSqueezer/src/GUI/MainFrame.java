@@ -11,6 +11,11 @@ import javax.swing.JOptionPane;
 import linksqueezer.LinkSqueezer;
 import linksqueezer.LinkStorage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author blackrose
@@ -27,6 +32,8 @@ public class MainFrame extends javax.swing.JFrame {
         this.linkSqueezer = linkSqueezer;
         this.linkStorage = linkStorage;
         initComponents();
+        // call populateTableFromCSV()
+        populateTableFromCSV();
     }
 
     private MainFrame() {
@@ -326,6 +333,26 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    // Read and Display History
+private void populateTableFromCSV() {
+    String csvFile = "DB.csv";
+    String line;
+    String csvSplitBy = ",";
+    DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
+    
+    // Clear existing table data
+    model.setRowCount(0);
+
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        while ((line = br.readLine()) != null) {
+            String[] data = line.split(csvSplitBy);
+            model.addRow(data);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearRecord;
@@ -346,3 +373,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtSqueezedURL;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+
+
