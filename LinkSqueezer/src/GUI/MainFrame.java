@@ -40,18 +40,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        txtSqueezed = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        lblLongURL = new javax.swing.JLabel();
+        txtLongURL = new javax.swing.JTextField();
+        lblAlias = new javax.swing.JLabel();
+        txtAlias = new javax.swing.JTextField();
+        btnSqueeze = new javax.swing.JButton();
+        txtSqueezedURL = new javax.swing.JTextField();
+        lblSqueezedURL = new javax.swing.JLabel();
+        btnCopyToClipBoard = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        tblHistory = new javax.swing.JTable();
+        lblHistory = new javax.swing.JLabel();
+        btnClearRecord = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -60,45 +60,50 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Long Url");
+        lblLongURL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblLongURL.setText("Long URL");
 
-        jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtLongURL.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtLongURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtLongURLActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Alias/Name");
+        lblAlias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAlias.setText("Alias/Name");
 
-        jTextField2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtAlias.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtAlias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtAliasActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 204, 0));
-        jButton1.setText("Squeeze");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
-
-        txtSqueezed.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        txtSqueezed.addActionListener(new java.awt.event.ActionListener() {
+        btnSqueeze.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSqueeze.setForeground(new java.awt.Color(51, 204, 0));
+        btnSqueeze.setText("Squeeze");
+        btnSqueeze.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        btnSqueeze.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSqueezedActionPerformed(evt);
+                btnSqueezeActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Squeezed URL");
+        txtSqueezedURL.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtSqueezedURL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSqueezedURLActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 204, 0));
-        jButton2.setText("Copy To Clipboard");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        lblSqueezedURL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSqueezedURL.setText("Squeezed URL");
+
+        btnCopyToClipBoard.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCopyToClipBoard.setForeground(new java.awt.Color(51, 204, 0));
+        btnCopyToClipBoard.setText("Copy To Clipboard");
+        btnCopyToClipBoard.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,21 +114,21 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(lblAlias)
+                            .addComponent(lblLongURL))
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3)
+                        .addComponent(lblSqueezedURL)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSqueezed)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2))
+                    .addComponent(txtSqueezedURL)
+                    .addComponent(txtLongURL)
+                    .addComponent(txtAlias))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCopyToClipBoard, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(btnSqueeze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,25 +138,25 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblLongURL)
+                            .addComponent(txtLongURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblAlias)
+                            .addComponent(txtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSqueeze, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSqueezed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSqueezedURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSqueezedURL)
+                    .addComponent(btnCopyToClipBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHistory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tblHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -159,19 +164,19 @@ public class MainFrame extends javax.swing.JFrame {
                 "S #", "Long URL", "Squeezed URL"
             }
         ));
-        jTable1.setName(""); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(2);
+        tblHistory.setName(""); // NOI18N
+        jScrollPane1.setViewportView(tblHistory);
+        if (tblHistory.getColumnModel().getColumnCount() > 0) {
+            tblHistory.getColumnModel().getColumn(0).setPreferredWidth(2);
         }
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setText("History");
+        lblHistory.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblHistory.setText("History");
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 204, 0));
-        jButton3.setText("Clear Record");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        btnClearRecord.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnClearRecord.setForeground(new java.awt.Color(51, 204, 0));
+        btnClearRecord.setText("Clear Record");
+        btnClearRecord.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -189,10 +194,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(453, 453, 453)
-                        .addComponent(jLabel4))
+                        .addComponent(lblHistory))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(382, 382, 382)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(418, 418, 418))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -207,11 +212,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel4)
+                .addComponent(lblHistory)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
 
@@ -219,17 +224,21 @@ public class MainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtLongURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLongURLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtLongURLActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtAliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAliasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtAliasActionPerformed
 
-    private void txtSqueezedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSqueezedActionPerformed
+    private void txtSqueezedURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSqueezedURLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSqueezedActionPerformed
+    }//GEN-LAST:event_txtSqueezedURLActionPerformed
+
+    private void btnSqueezeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSqueezeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSqueezeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,21 +276,21 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnClearRecord;
+    private javax.swing.JButton btnCopyToClipBoard;
+    private javax.swing.JButton btnSqueeze;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField txtSqueezed;
+    private javax.swing.JLabel lblAlias;
+    private javax.swing.JLabel lblHistory;
+    private javax.swing.JLabel lblLongURL;
+    private javax.swing.JLabel lblSqueezedURL;
+    private javax.swing.JTable tblHistory;
+    private javax.swing.JTextField txtAlias;
+    private javax.swing.JTextField txtLongURL;
+    private javax.swing.JTextField txtSqueezedURL;
     // End of variables declaration//GEN-END:variables
 }
