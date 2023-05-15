@@ -23,7 +23,6 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-
     public MainFrame(LinkSqueezer linkShortener, LinkStorage linkStorage) {
         this.linkSqueezer = linkSqueezer;
         this.linkStorage = linkStorage;
@@ -250,8 +249,28 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSqueezedURLActionPerformed
 
     private void btnSqueezeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSqueezeActionPerformed
+
+        String alias = txtAlias.getText();
         LinkSqueezer ls = new LinkSqueezer();
-        txtSqueezedURL.setText(ls.generateShortUrl(txtLongURL.getText()));
+
+        String longUrl = txtLongURL.getText();
+
+        // Check if the alias is blank
+        if (alias.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Alias cannot be blank", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String squeezedUrl = ls.generateShortUrl(longUrl);
+
+        // Check if the generateShortUrl method returns false
+        if (!(ls.isValidUrl(longUrl))) {
+            JOptionPane.showMessageDialog(null, "Invalid URL", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        txtSqueezedURL.setText(squeezedUrl);
+
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
     private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
