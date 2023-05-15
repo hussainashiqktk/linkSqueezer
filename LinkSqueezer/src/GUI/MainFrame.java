@@ -336,7 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Read and Display History
 private void populateTableFromCSV() {
-    String csvFile = "D:\\Semester #6\\Software Construction\\SemesterProject\\linkSqueezer\\LinkSqueezer\\DB.csv";
+    String csvFile = "DB.csv";
     String line;
     String csvSplitBy = ",";
     DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
