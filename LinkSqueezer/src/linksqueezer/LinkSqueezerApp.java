@@ -15,7 +15,7 @@ public class LinkSqueezerApp {
 
     public static void main(String[] args) throws IOException {
         LinkSqueezer linkShortener = new LinkSqueezer();
-        LinkStorage linkStorage = new LinkStorage("linksDB.csv");
+        LinkStorage linkStorage = new LinkStorage("DB.csv");
 
         List<Link> links = linkStorage.loadLinks();
         if (links.isEmpty()) {
