@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 public class LinkSqueezer {
 
     private static final String BASE62_ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String SHORT_URL_PREFIX = "sqz.ly/";
 
     public String generateShortUrl(String longUrl) {
         try {
@@ -15,7 +16,11 @@ public class LinkSqueezer {
             byte[] hash = md.digest(longUrl.getBytes());
             BigInteger bigInt = new BigInteger(1, hash);
             String digest = bigInt.toString(62);
-            StringBuilder shortUrl = new StringBuilder("https://sqz.ly/");
+
+            // Take the first 5 characters of the digest
+            digest = digest.substring(0, 5);
+
+            StringBuilder shortUrl = new StringBuilder(SHORT_URL_PREFIX);
             for (int i = 0; i < digest.length(); i++) {
                 char c = digest.charAt(i);
                 int index = (int) c;
