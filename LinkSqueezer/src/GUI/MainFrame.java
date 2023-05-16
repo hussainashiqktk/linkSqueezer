@@ -12,8 +12,11 @@ import linksqueezer.LinkSqueezer;
 import linksqueezer.LinkStorage;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -279,7 +282,13 @@ public class MainFrame extends javax.swing.JFrame {
         }
         String squeezedUrl = ls.generateShortUrl(longUrl);
         txtSqueezedURL.setText(squeezedUrl);
-
+        
+        // save to the CSV file
+        String longURL = txtLongURL.getText();
+        String squeezedURL = txtSqueezedURL.getText();
+        String alias1 = txtAlias.getText();
+        saveToCSV(longURL, squeezedURL, alias1);
+        
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
     private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
@@ -352,6 +361,42 @@ private void populateTableFromCSV() {
     } catch (IOException e) {
         e.printStackTrace();
     }
+}
+
+// save to the CSV File
+private void saveToCSV(String longURL, String squeezedURL, String alias) {
+    String csvFile = "DB.csv";
+
+    try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(csvFile, true)))) {
+        int nextSNum = getNextSNum(csvFile);
+        String record = nextSNum + "," + longURL + "," +squeezedURL + "," + alias ;
+        pw.println(record);
+        System.out.println("Record saved: " + record);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+// increment 
+private int getNextSNum(String csvFile) {
+    int nextSNum = 1;
+
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] fields = line.split(",");
+            if (fields.length > 0) {
+                int sNum = Integer.parseInt(fields[0]);
+                if (sNum >= nextSNum) {
+                    nextSNum = sNum + 1;
+                }
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    return nextSNum;
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
