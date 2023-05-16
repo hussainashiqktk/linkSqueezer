@@ -9,23 +9,17 @@ package GUI;
  * @author blackrose
  */
 public class AboutFrame extends javax.swing.JFrame {
+
+//    String text = "A simple Java GUI application that shortens URL. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others.\n\nThe application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. \n\nUsers can customize the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database hosted on a local network or on AWS.\n\nMade with love by: \uD83D\uDE09\uD83D\uDE0A\uD83D\uDE01\uD83D\uDE18\n\nHussain Ashiq\nUzair Bin Abdul Hameed";
+
     
-    String about = "A simple Java GUI application that shortens URL. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others.\n" +
-"\n" +
-" The application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. \n" +
-"\n" +
-"Users can customize the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database hosted on a local network or on AWS.\n" +
-"\n" +
-"Made with love by: 😉😊😁😘\n" +
-"\n" +
-"Hussain Ashiq\n" +
-"Uzair Bin Abdul Hameed";
-    
+
     /**
      * Creates new form AboutFrame
      */
     public AboutFrame() {
         initComponents();
+//        txtAbout.setText (text);
     }
 
     /**
@@ -39,21 +33,25 @@ public class AboutFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAbout = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("About");
+        setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
         jLabel1.setText("About");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Consolas", 0, 10)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("A simple Java GUI application that shortens URL. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others.\n\n The application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. \n\nUsers can customize the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database hosted on a local network or on AWS.\n\nMade with love by: 😉😊😁😘\n\nHussain Ashiq\nUzair Bin Abdul Hameed");
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAbout.setEditable(false);
+        txtAbout.setColumns(20);
+        txtAbout.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        txtAbout.setLineWrap(true);
+        txtAbout.setRows(5);
+        txtAbout.setText("\nLinkSqueezer is a simple Java GUI application that shortens URL. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others.\n\nThe application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL.\n\nUsers can save the URL in a localFIle Database with an alias/name. \n\nThis is a semester project with limited functionalities.\n\n\nMade with ❤❤❤ by :\n\nHussain Ashiq Khattak\nUzair Bin Abdul Hameed\nMuhammad Iftikhar\n\nFrom : BESE-26-B");
+        txtAbout.setWrapStyleWord(true);
+        txtAbout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane1.setViewportView(txtAbout);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,11 +72,12 @@ public class AboutFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -119,6 +118,6 @@ public class AboutFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtAbout;
     // End of variables declaration//GEN-END:variables
 }
