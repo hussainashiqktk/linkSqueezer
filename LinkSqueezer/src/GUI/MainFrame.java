@@ -199,6 +199,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnClearRecord.setForeground(new java.awt.Color(51, 204, 0));
         btnClearRecord.setText("Clear Record");
         btnClearRecord.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        btnClearRecord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearRecordActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -308,6 +313,25 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCopyToClipBoardActionPerformed
 
+    private void btnClearRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearRecordActionPerformed
+        // TODO add your handling code here:
+        
+        // Display a confirmation dialog
+    int confirm = JOptionPane.showConfirmDialog(this, "Do you want to clear history?", "Confirm", JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        // Clear the CSV file
+        String csvFile = "DB.csv";
+        try (PrintWriter pw = new PrintWriter(csvFile)) {
+            pw.close();
+            System.out.println("History cleared.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Reload the table
+        loadTableData();
+    }
+    }//GEN-LAST:event_btnClearRecordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -397,6 +421,25 @@ private int getNextSNum(String csvFile) {
     }
 
     return nextSNum;
+}
+
+// reload Table
+private void loadTableData() {
+    DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
+    model.setRowCount(0); // Clear existing table data
+
+    // Read the CSV file and populate the table
+    String csvFile = "DB.csv";
+    String line;
+    String csvSplitBy = ",";
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        while ((line = br.readLine()) != null) {
+            String[] data = line.split(csvSplitBy);
+            model.addRow(data);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
