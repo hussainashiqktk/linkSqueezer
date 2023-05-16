@@ -1,4 +1,4 @@
-# linkSqueezer 👉🔗
+# LinkSqueezer 👉🔗
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
@@ -11,11 +11,11 @@ A simple Java GUI application that shortens URLs. This app allows users to input
 - [Contributing](#contributing)
 - [License](#license)
 
-## Files
+## Project Files Breakdown
 
 Overall, this directory tree gives an overview of the organization and structure of the project's files and directories.
 
-```
+```sh
 C:\USERS\BLACKROSE\DESKTOP\LINKSQUEEZER
 ├── .gitignore
 ├── build.xml
@@ -53,18 +53,20 @@ Here's a brief description of each file :
 
 Overall, these files represent the core components of the LinkSqueezer project, including its documentation, requirements, code, and data files.
 
-## Installation 🛠️
+## How to Run and Build 🛠️
 
 To install and run the app on your local machine, follow these steps:
 
+0. Make sure you are using java 20 (build and tested using this).
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/your_username/URL-Shortener-App.git
+git clone https://github.com/hussainashiqktk/linkSqueezer
 ```
 
-2. Open the project in your preferred IDE (Integrated Development Environment).
-3. Run the `URLShortenerApp.java` file located in the `src/main/java` directory.
+2. Open the project in Netbeans (tested on Apache Netbeans 17).
+3. Run the `Main.java` file located in the `src/linksqueezer` directory.
+4. Or you can directly run the jar file named **LinkSqueezer.jar** in **dist** directory. 
 
 ## Usage 🚀
 
@@ -87,4 +89,4 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) li
 
 Screenshots or gifs of the app in action can be added here.
 
-Made with ❤️ by [Hussain Ashiq Khattak](https://github.com/hussainashiqktk).
+Made with ❤️ by [Hussain Ashiq Khattak](https://github.com/hussainashiqktk), [Uzair Bin Abdul Hameed]() and [Muhammad Iftikhar]()
