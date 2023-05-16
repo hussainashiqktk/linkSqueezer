@@ -180,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "S #", "Long URL", "Alias", "Squeezed URL"
+                "S #", "Long URL", "Squeezed URL", "Alias"
             }
         ));
         tblHistory.setName(""); // NOI18N
