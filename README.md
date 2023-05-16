@@ -84,7 +84,7 @@ git clone https://github.com/hussainashiqktk/linkSqueezer
 
 ## Contributing 🤝
 
-Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/your_username/URL-Shortener-App/issues) to see if your suggestion has already been made. If you have found a bug or have a feature request, please [open a new issue](https://github.com/your_username/URL-Shortener-App/issues/new).
+Contributions, issues, and feature requests are welcome! Feel free to check out the [issues page](https://github.com/hussainashiqktk/linkSqueezer/issues) to see if your suggestion has already been made. If you have found a bug or have a feature request, please [open a new issue][(https://github.com/hussainashiqktk/linkSqueezer/issues/new)
 
 ## License 📝
 
