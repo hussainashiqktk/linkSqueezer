@@ -11,6 +11,48 @@ A simple Java GUI application that shortens URLs. This app allows users to input
 - [Contributing](#contributing)
 - [License](#license)
 
+## Files
+
+Overall, this directory tree gives an overview of the organization and structure of the project's files and directories.
+
+```
+C:\USERS\BLACKROSE\DESKTOP\LINKSQUEEZER
+├── .gitignore
+├── build.xml
+├── DB.csv
+├── manifest.mf
+├── README.md
+├── SRS.md
+├── dist
+│   ├── DB.csv
+│   ├── LinkSqueezer.jar
+│   └── README.TXT
+└── src
+    ├── GUI
+    │   ├── AboutFrame.form
+    │   ├── AboutFrame.java
+    │   ├── MainFrame.form
+    │   └── MainFrame.java
+    └── linksqueezer
+        ├── Link.java
+        ├── LinkSqueezer.java
+        ├── LinkStorage.java
+        └── Main.java
+```
+Here's a brief description of each file : 
+
+1. `README.md`: This file is typically used as the main documentation file for a GitHub repository. It contains information about the project, its purpose, features, and how to use it. It may also contain instructions for contributing to the project or running it locally.
+
+2. `SRS.md`: This file is a Software Requirements Specification document. It outlines the functional and non-functional requirements for the project, as well as any constraints or dependencies that need to be considered during development.
+
+3. `DB.csv`: This file is a database file used by the LinkSqueezer project. It likely contains data related to links that have been saved or compressed using the LinkSqueezer software.
+
+4. `Main.java`: This file is the main driver class for the LinkSqueezer project. It likely contains the `main` method, which is the entry point for the application. It may also contain other methods and classes used to initialize the application and manage user input/output.
+
+5. `LinkSqueezer.jar`: This file is the executable JAR file for the LinkSqueezer project. It is typically exported from an IDE and can be run on any system with Java installed. It contains all of the compiled Java code necessary to run the application, as well as any dependencies required by the project. 
+
+Overall, these files represent the core components of the LinkSqueezer project, including its documentation, requirements, code, and data files.
+
 ## Installation 🛠️
 
 To install and run the app on your local machine, follow these steps:
