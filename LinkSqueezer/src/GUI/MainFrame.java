@@ -102,6 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        txtSqueezedURL.setEditable(false);
         txtSqueezedURL.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         txtSqueezedURL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, java.awt.Color.lightGray, null, null));
         txtSqueezedURL.addActionListener(new java.awt.event.ActionListener() {
