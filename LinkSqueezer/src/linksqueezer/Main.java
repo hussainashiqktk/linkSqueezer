@@ -1,7 +1,7 @@
 /**
  *
  * The LinkSqueezerApp class is the entry point of the application. It creates a LinkShortener and a LinkStorage object, and loads all links from the "linksDB.csv" file using the loadLinks method of the LinkStorage object.
- * If the "linksDB.csv" file does not exist, the class should first create the file and print a message saying that a new file has been created. If the file is empty, it should print a message saying that there are no links stored in the file.
+ * If the "DB.csv" file does not exist, the class should first create the file and print a message saying that a new file has been created. If the file is empty, it should print a message saying that there are no links stored in the file.
  * The main method then initializes the LinkSqueezerGUI object using the LinkShortener and LinkStorage objects, and calls the initComponents method to start the GUI.
  */
 package linksqueezer;
@@ -11,7 +11,7 @@ import GUI.MainFrame;
 import java.io.IOException;
 import java.util.List;
 
-public class LinkSqueezerApp {
+public class Main {
 
     public static void main(String[] args) throws IOException {
         LinkSqueezer linkShortener = new LinkSqueezer();
