@@ -13,9 +13,9 @@ A simple Java GUI application that shortens URLs. This app allows users to input
 - [Project Files Breakdown](#project-files-breakdown)
 - [How to Run](#how-to-run-🛠️)
 - [Usage](#usage-🚀)
-- [Contributing](#contributing)
-- [License](#license)
-- 
+- [Contributing](#contributing-🤝)
+- [License](#license-📝)
+
 ## Requirements
 The project requires Java 20 to run.
 
