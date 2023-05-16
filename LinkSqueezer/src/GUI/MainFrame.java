@@ -293,6 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
         String squeezedURL = txtSqueezedURL.getText();
         String alias1 = txtAlias.getText();
         saveToCSV(longURL, squeezedURL, alias1);
+        populateTableFromCSV();
         
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
