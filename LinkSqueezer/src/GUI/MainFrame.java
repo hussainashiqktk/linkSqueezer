@@ -65,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         tblHistory = new javax.swing.JTable();
         lblHistory = new javax.swing.JLabel();
         btnClearRecord = new javax.swing.JButton();
+        btnabout = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -205,6 +206,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        btnabout.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnabout.setForeground(new java.awt.Color(51, 204, 0));
+        btnabout.setText("About");
+        btnabout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 51, 0), null, null));
+        btnabout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaboutActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -218,20 +229,21 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(453, 453, 453)
-                        .addComponent(lblHistory))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(382, 382, 382)
-                        .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(418, 418, 418))
+                .addGap(453, 453, 453)
+                .addComponent(lblHistory)
+                .addGap(418, 474, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(382, 382, 382)
+                .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnabout, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +255,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClearRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnabout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -279,7 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Invalid URL", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Check if the alias is blank
         if (alias.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Alias cannot be blank", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -287,14 +301,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
         String squeezedUrl = ls.generateShortUrl(longUrl);
         txtSqueezedURL.setText(squeezedUrl);
-        
+
         // save to the CSV file
         String longURL = txtLongURL.getText();
         String squeezedURL = txtSqueezedURL.getText();
         String alias1 = txtAlias.getText();
         saveToCSV(longURL, squeezedURL, alias1);
         populateTableFromCSV();
-        
+
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
     private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
@@ -316,22 +330,38 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnClearRecordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearRecordActionPerformed
         // TODO add your handling code here:
-        
+
         // Display a confirmation dialog
-    int confirm = JOptionPane.showConfirmDialog(this, "Do you want to clear history?", "Confirm", JOptionPane.YES_NO_OPTION);
-    if (confirm == JOptionPane.YES_OPTION) {
-        // Clear the CSV file
-        String csvFile = "DB.csv";
-        try (PrintWriter pw = new PrintWriter(csvFile)) {
-            pw.close();
-            System.out.println("History cleared.");
-        } catch (IOException e) {
-            e.printStackTrace();
+        int confirm = JOptionPane.showConfirmDialog(this, "Do you want to clear history?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            // Clear the CSV file
+            String csvFile = "DB.csv";
+            try (PrintWriter pw = new PrintWriter(csvFile)) {
+                pw.close();
+                System.out.println("History cleared.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Reload the table
+            loadTableData();
         }
-        // Reload the table
-        loadTableData();
-    }
     }//GEN-LAST:event_btnClearRecordActionPerformed
+
+    private void btnaboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaboutActionPerformed
+        // TODO add your handling code here:
+
+        AboutFrame aboutFrame = new AboutFrame();  // Create an instance of the AboutFrame
+
+        // Set the size of the frame
+        int width = 1000;  // Specify the desired width
+        int height = 1000;  // Specify the desired height
+        aboutFrame.setSize(width, height);
+
+        // Set the location of the frame to the center of the screen
+        aboutFrame.setLocationRelativeTo(null);
+
+        aboutFrame.setVisible(true);  // Set the visibility of the AboutFrame to true
+    }//GEN-LAST:event_btnaboutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,86 +397,87 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-    // Read and Display History
-private void populateTableFromCSV() {
-    String csvFile = "DB.csv";
-    String line;
-    String csvSplitBy = ",";
-    DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
-    
-    // Clear existing table data
-    model.setRowCount(0);
 
-    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-        while ((line = br.readLine()) != null) {
-            String[] data = line.split(csvSplitBy);
-            model.addRow(data);
+    // Read and Display History
+    private void populateTableFromCSV() {
+        String csvFile = "DB.csv";
+        String line;
+        String csvSplitBy = ",";
+        DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
+
+        // Clear existing table data
+        model.setRowCount(0);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(csvSplitBy);
+                model.addRow(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
 // save to the CSV File
-private void saveToCSV(String longURL, String squeezedURL, String alias) {
-    String csvFile = "DB.csv";
+    private void saveToCSV(String longURL, String squeezedURL, String alias) {
+        String csvFile = "DB.csv";
 
-    try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(csvFile, true)))) {
-        int nextSNum = getNextSNum(csvFile);
-        String record = nextSNum + "," + longURL + "," +squeezedURL + "," + alias ;
-        pw.println(record);
-        System.out.println("Record saved: " + record);
-    } catch (IOException e) {
-        e.printStackTrace();
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(csvFile, true)))) {
+            int nextSNum = getNextSNum(csvFile);
+            String record = nextSNum + "," + longURL + "," + squeezedURL + "," + alias;
+            pw.println(record);
+            System.out.println("Record saved: " + record);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
 // increment 
-private int getNextSNum(String csvFile) {
-    int nextSNum = 1;
+    private int getNextSNum(String csvFile) {
+        int nextSNum = 1;
 
-    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] fields = line.split(",");
-            if (fields.length > 0) {
-                int sNum = Integer.parseInt(fields[0]);
-                if (sNum >= nextSNum) {
-                    nextSNum = sNum + 1;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length > 0) {
+                    int sNum = Integer.parseInt(fields[0]);
+                    if (sNum >= nextSNum) {
+                        nextSNum = sNum + 1;
+                    }
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
 
-    return nextSNum;
-}
+        return nextSNum;
+    }
 
 // reload Table
-private void loadTableData() {
-    DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
-    model.setRowCount(0); // Clear existing table data
+    private void loadTableData() {
+        DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
+        model.setRowCount(0); // Clear existing table data
 
-    // Read the CSV file and populate the table
-    String csvFile = "DB.csv";
-    String line;
-    String csvSplitBy = ",";
-    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-        while ((line = br.readLine()) != null) {
-            String[] data = line.split(csvSplitBy);
-            model.addRow(data);
+        // Read the CSV file and populate the table
+        String csvFile = "DB.csv";
+        String line;
+        String csvSplitBy = ",";
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(csvSplitBy);
+                model.addRow(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearRecord;
     private javax.swing.JButton btnCopyToClipBoard;
     private javax.swing.JButton btnSqueeze;
+    private javax.swing.JButton btnabout;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -462,9 +493,3 @@ private void loadTableData() {
     private javax.swing.JTextField txtSqueezedURL;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-
-
-
