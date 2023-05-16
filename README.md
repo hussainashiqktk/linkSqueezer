@@ -9,10 +9,15 @@ A simple Java GUI application that shortens URLs. This app allows users to input
 
 ## Table of Contents 📜
 
-- [Installation](#installation)
-- [Usage](#usage)
+- [Requirements](#requirements)
+- [Project Files Breakdown](#project-files-breakdown)
+- [How to Run](#how-to-run-🛠️)
+- [Usage](#usage-🚀)
 - [Contributing](#contributing)
 - [License](#license)
+- 
+## Requirements
+The project requires Java 20 to run.
 
 ## Project Files Breakdown
 
@@ -56,7 +61,7 @@ Here's a brief description of each file :
 
 Overall, these files represent the core components of the LinkSqueezer project, including its documentation, requirements, code, and data files.
 
-## How to Run and Build 🛠️
+## How to Run🛠️
 
 To install and run the app on your local machine, follow these steps:
 
@@ -92,6 +97,7 @@ This project is licensed under the [MIT](https://opensource.org/licenses/MIT) li
 
 ---
 
-Screenshots or gifs of the app in action can be added here.
-
-Made with ❤️ by [Hussain Ashiq Khattak](https://github.com/hussainashiqktk), [Uzair Bin Abdul Hameed]() and [Muhammad Iftikhar]()
+Made with ❤️ by :
+- [Hussain Ashiq Khattak](https://github.com/hussainashiqktk)
+- [Uzair Bin Abdul Hameed]()
+- [Muhammad Iftikhar]()
