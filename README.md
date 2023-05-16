@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A simple Java GUI application that shortens URLs. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others. The application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. Users can customize the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database hosted on a local network or on AWS.
+A simple Java GUI application that shortens URLs. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others. The application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. Users can store the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database file DB.csv.
 
 ## Table of Contents 📜
 
