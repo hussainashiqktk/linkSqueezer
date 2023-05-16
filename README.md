@@ -73,12 +73,14 @@ git clone https://github.com/hussainashiqktk/linkSqueezer
 
 ## Usage 🚀
 
+![image](https://github.com/hussainashiqktk/linkSqueezer/assets/74835399/1837f514-31a8-491a-8b80-f36b8c4a7063)
+
+
 1. Enter the long URL in the input field provided.
-2. Click the "Shorten" button to generate a shortened URL.
-3. If desired, enter a user-defined alias or keyword in the input field provided to customize the shortened URL.
-4. Click the "Shorten" button again to generate the customized shortened URL.
-5. The shortened URL will be displayed in the output field below the input fields.
-6. To retrieve the original URL, enter the shortened URL or the user-defined alias in the input field provided and click the "Retrieve" button.
+2. Give the alias/name for your reference.
+3. Click the "Squeeze" button to generate a shortened URL.
+4. The shortened URL will be displayed in the output field below the input fields. The history is stored in the DB.csv file.
+5. To copy the shortened URL to clipboard click the button Copy To Clipboard.
 
 ## Contributing 🤝
 
