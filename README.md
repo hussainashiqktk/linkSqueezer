@@ -4,6 +4,9 @@
 
 A simple Java GUI application that shortens URLs. This app allows users to input a long URL and generates a shorter, more manageable URL that can be easily shared with others. The application implements a custom URL shortening algorithm and validates the entered URL to ensure that it is a valid URL before attempting to generate a shortened URL. Users can store the shortened URL by providing a user-defined alias or keyword. The original and shortened URLs are stored in a local database file DB.csv.
 
+![image](https://github.com/hussainashiqktk/linkSqueezer/assets/74835399/650dc2c6-f805-4252-ad0c-cea011c7dd67)
+
+
 ## Table of Contents 📜
 
 - [Installation](#installation)
