@@ -3,6 +3,7 @@ package linksqueezer;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 public class LinkSqueezer {
 
@@ -14,7 +15,7 @@ public class LinkSqueezer {
             byte[] hash = md.digest(longUrl.getBytes());
             BigInteger bigInt = new BigInteger(1, hash);
             String digest = bigInt.toString(62);
-            StringBuilder shortUrl = new StringBuilder("https://squeezer.com/");
+            StringBuilder shortUrl = new StringBuilder("https://sqz.ly/");
             for (int i = 0; i < digest.length(); i++) {
                 char c = digest.charAt(i);
                 int index = (int) c;
@@ -27,9 +28,15 @@ public class LinkSqueezer {
     }
 
     public boolean isValidUrl(String url) {
+        // Check if the URL is empty or null
+        if (url == null || url.isEmpty()) {
+            return false;
+        }
+
         // Use a regular expression to check if the URL is valid
-        // This is a simple example, you can use a more complex regex to handle edge cases
-        String regex = "^(http|https)://[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}(\\S*)$";
-        return url.matches(regex);
+        String regex = "^(https?://)?([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})[/\\S]*$";
+        Pattern pattern = Pattern.compile(regex);
+
+        return pattern.matcher(url).matches();
     }
 }
