@@ -10,6 +10,7 @@ import java.awt.datatransfer.StringSelection;
 import javax.swing.JOptionPane;
 import linksqueezer.LinkSqueezer;
 import linksqueezer.LinkStorage;
+import linksqueezer.Link;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,6 +30,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private LinkSqueezer linkSqueezer;
     private LinkStorage linkStorage;
+    String longURL;
+    String squeezedURL;
+    String alias1;
 
     /**
      * Creates new form MainFrame
@@ -301,12 +305,16 @@ public class MainFrame extends javax.swing.JFrame {
         txtSqueezedURL.setText(squeezedUrl);
 
         // save to the CSV file
-        String longURL = txtLongURL.getText();
-        String squeezedURL = txtSqueezedURL.getText();
-        String alias1 = txtAlias.getText();
-        saveToCSV(longURL, squeezedURL, alias1);
+        longURL = txtLongURL.getText();
+        squeezedURL = txtSqueezedURL.getText();
+        alias1 = txtAlias.getText();
+        
         populateTableFromCSV();
-
+        LinkStorage linkStorage = new LinkStorage(longURL, squeezedURL, alias1); // call Link object
+        linkStorage.saveToCSV();
+        loadTableData();
+      
+        
     }//GEN-LAST:event_btnSqueezeActionPerformed
 
     private void btnCopyToClipBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyToClipBoardActionPerformed
@@ -396,42 +404,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-// save to the CSV File
-    private void saveToCSV(String longURL, String squeezedURL, String alias) {
-        String csvFile = "DB.csv";
-
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(csvFile, true)))) {
-            int nextSNum = getNextSNum(csvFile);
-            String record = nextSNum + "," + longURL + "," + squeezedURL + "," + alias;
-            pw.println(record);
-            System.out.println("Record saved: " + record);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-// increment 
-    private int getNextSNum(String csvFile) {
-        int nextSNum = 1;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(",");
-                if (fields.length > 0) {
-                    int sNum = Integer.parseInt(fields[0]);
-                    if (sNum >= nextSNum) {
-                        nextSNum = sNum + 1;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return nextSNum;
-    }
-
 // reload Table
     private void loadTableData() {
         DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
@@ -451,6 +423,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClearRecord;
     private javax.swing.JButton btnCopyToClipBoard;
@@ -463,7 +436,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblHistory;
     private javax.swing.JLabel lblLongURL;
     private javax.swing.JLabel lblSqueezedURL;
-    private javax.swing.JTable tblHistory;
+    public javax.swing.JTable tblHistory;
     private javax.swing.JTextField txtAlias;
     private javax.swing.JTextField txtLongURL;
     private javax.swing.JTextField txtSqueezedURL;

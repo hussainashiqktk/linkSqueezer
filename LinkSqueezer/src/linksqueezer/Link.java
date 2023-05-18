@@ -2,17 +2,21 @@ package linksqueezer;
 
 
 public class Link {
-
+    
+    private String serialNo;
     private String longUrl;
     private String shortUrl;
     private String alias;
+    
 
-    public Link(String longUrl, String shortUrl, String alias) {
+    public Link(String serialNo, String longUrl, String shortUrl, String alias) {
+        this.serialNo = serialNo;
         this.longUrl = longUrl;
         this.shortUrl = shortUrl;
         this.alias = alias;
+      
     }
-
+    
     public String getLongUrl() {
         return longUrl;
     }
