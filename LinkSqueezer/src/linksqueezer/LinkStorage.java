@@ -4,13 +4,18 @@
  */
 package linksqueezer;
 
+import GUI.MainFrame;
+import linksqueezer.Link;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * The LinkStorage class takes a filepath as a parameter in the constructor,
@@ -19,6 +24,10 @@ import java.util.List;
 public class LinkStorage {
 
     private String filepath;
+    private String longURL;
+    private String squeezedURL;
+    private String alias;
+
 
     /**
      * Creates a new instance of the LinkStorage class with the specified
@@ -26,9 +35,58 @@ public class LinkStorage {
      *
      * @param filepath the path to the file where the links are stored
      */
+    
     public LinkStorage(String filepath) {
         this.filepath = filepath;
+        
     }
+    
+    public LinkStorage(String longURL, String squeezedURL, String alias) {
+        this.longURL = longURL;
+        this.squeezedURL = squeezedURL;
+        this.alias = alias;
+       
+    }
+    
+    
+
+    public void saveToCSV() {
+        
+        String csvFile = "DB.csv";
+
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(csvFile, true)))) {
+            int nextSNum = getNextSNum(csvFile);
+            String record = nextSNum + "," + longURL + "," + squeezedURL + "," + alias;
+            pw.println(record);
+            System.out.println("Record saved: " + record);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+// increment 
+    private int getNextSNum(String csvFile) {
+        int nextSNum = 1;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length > 0) {
+                    int sNum = Integer.parseInt(fields[0]);
+                    if (sNum >= nextSNum) {
+                        nextSNum = sNum + 1;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return nextSNum;
+    }
+   
+        
 
     /**
      * Loads all links from the file and returns them as a List of Link objects.
@@ -46,13 +104,20 @@ public class LinkStorage {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                String longUrl = fields[0];
-                String shortUrl = fields[1];
-                String alias = fields[2];
-                links.add(new Link(longUrl, shortUrl, alias));
+                String serialNo = fields[0];
+                String longUrl = fields[1];
+                String shortUrl = fields[2];
+                String alias = fields[3];
+                links.add(new Link(serialNo,longUrl, shortUrl, alias));
             }
         }
+        System.out.print("Hello, world");
+        
+        for (Link link : links) {
+    System.out.println(link.toString()); // Assuming Link has overridden the toString() method
+}
         return links;
+       
     }
 
     /**
@@ -75,41 +140,42 @@ public class LinkStorage {
      * link exists in the file
      * @throws IOException if an I/O error occurs while reading from the file
      */
-    public Link getLinkByShortUrl(String shortUrl) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(",");
-                if (fields[1].equals(shortUrl)) {
-                    String longUrl = fields[0];
-                    String alias = fields[2];
-                    return new Link(longUrl, shortUrl, alias);
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Retrieves a Link object by its alias.
-     *
-     * @param alias the alias of the Link object to be retrieved
-     * @return the Link object with the specified alias, or null if no such link
-     * exists in the file
-     * @throws IOException if an I/O error occurs while reading from the file
-     */
-    public Link getLinkByAlias(String alias) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] fields = line.split(",");
-                if (fields[2].equals(alias)) {
-                    String longUrl = fields[0];
-                    String shortUrl = fields[1];
-                    return new Link(longUrl, shortUrl, alias);
-                }
-            }
-        }
-        return null;
-    }
+//    public Link getLinkByShortUrl(String shortUrl) throws IOException {
+//        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                String[] fields = line.split(",");
+//                if (fields[1].equals(shortUrl)) {
+//                    String longUrl = fields[0];
+//                    String alias = fields[2];
+//                    return new Link(serialNo,longUrl, shortUrl, alias);
+//                }
+//            }
+//        }
+//        return null;
+//    }
+//
+//    /**
+//     * Retrieves a Link object by its alias.
+//     *
+//     * @param alias the alias of the Link object to be retrieved
+//     * @return the Link object with the specified alias, or null if no such link
+//     * exists in the file
+//     * @throws IOException if an I/O error occurs while reading from the file
+//     */
+//    public Link getLinkByAlias(String alias) throws IOException {
+//        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                String[] fields = line.split(",");
+//                if (fields[2].equals(alias)) {
+//                    String longUrl = fields[0];
+//                    String shortUrl = fields[1];
+//                    return new Link(longUrl, shortUrl, alias);
+//                }
+//            }
+//        }
+//        return null;
+//    }
+    
 }
